@@ -1,6 +1,32 @@
-Solution: nginx_basic_ssl
+Solution: tss-nginx
 
-Description: A basic nginx container that only works over ssl. It uses a self signed certificate and really is intended for development testing only and as a gateway to a full lets_encrypt image.  The served content is mounted into the container at /usr/share/nginx/html. It uses TLS and redirects all calls to HTTP to HTTPS.
+Description: A basic nginx container with the following charateristics:
+- served content is mounted into the container as a volume at /usr/share/nginx/html. 
+- It uses TLS and redirects all calls to HTTP to HTTPS.
+
+## Installation/Configuration 
+
+### Create a new directory for the project
+
+### Run the project-setup.sh script
+- As the `mark` user
+```
+./project-setup.sh {path to new directory}
+```
+
+### Starting a New Project
+
+### Using an Existing Project
+
+### Post Install Steps
+
+#### Configure '.env' file
+* set the name of the project's directory.
+
+TODO:
+- 
+- compare with deployed setup
+- need copy of update_certs.sh script
 
 To use:
 
