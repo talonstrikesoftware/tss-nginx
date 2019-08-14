@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+
+  web:
+    build: 
+      context: .
+      dockerfile: ./nginx/Dockerfile
+    volumes:
+      - ./${PROJECT_DIR}:/usr/share/nginx/html
+      - ./${PROJECT_DIR}/nginx_logs:/var/log/nginx
+      - ${PWD}/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./${PROJECT_DIR}/ssl:/etc/nginx/ssl
+    ports:
+      - "80:80"
+      - "443:443"
+    env_file:
+      - ./nginx/web.env  
+
+
