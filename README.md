@@ -3,13 +3,23 @@ Solution: tss-nginx
 Description: A basic nginx container with the following charateristics:
 - served content is mounted into the container as a volume at /usr/share/nginx/html. 
 - It uses TLS and redirects all calls to HTTP to HTTPS.
+This is intended to be a setup where nginx proxies access to a rails project
+
+### Overview
+
+This is one of three projects that are intended to work in three separate containers (why three containers?) to serve a rails app.  The containers are:
+- nginx - The web server - has access to the rails container
+- postgres - The db server 
+- rails - The applications
 
 ## Installation/Configuration 
 
 ### Create a new directory for the project
 
 ### Run the project-setup.sh script
-- As the `mark` user
+- As the `sudo` user
+- Edit the ./nginx/Dockerfile replacing {domain_name} with the domain name you intend to serve
+-- Can this be an environment replacement string?
 ```
 ./project-setup.sh {path to new directory}
 ```
