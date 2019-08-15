@@ -1,14 +1,21 @@
 #!/bin/sh
 set -e
-cp -r * $1
-mkdir $1/data
-mkdir $1/data/website
-mkdir $1/data/nginx
-mkdir $1/data/nginx/nginx_logs
 
-# awk the nginx.conf file here? instead of the container
-mv $1/nginx/nginx.conf $1/data/nginx
-mv -R $1/nginx/conf.d $1/data/nginx
-mv $1/env.template $1/.env
-rm $1/README.md
-rm $1/project-setup.sh
+echo $OSTYPE
+# fix the nginx.conf file and put in a known path so it can be mounted into the container
+cp ./nginx/nginx.conf.template ./nginx/nginx.conf
+
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+   sed -i '' -e "s/DOMAIN_NAME/$1/g"  $PWD/nginx/nginx.conf
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    # have to do it this way because of mac OSX, will need to adjust for different OS's
+    sed -i '' -e "s/DOMAIN_NAME/$1/g"  $PWD/nginx/nginx.conf
+else
+    sed -i '' -e "s/DOMAIN_NAME/$1/g"  $PWD/nginx/nginx.conf
+fi
+
+cp ./nginx/nginx.conf ./data/nginx
+# mv $1/nginx/nginx.conf $1/data/nginx
+#mv $1/env.template $1/.env
+#rm $1/README.md
+#rm $1/project-setup.sh

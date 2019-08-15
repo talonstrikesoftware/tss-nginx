@@ -6,14 +6,15 @@ RUN apt-get update -yqq
 RUN apt-get install -yqq --no-install-recommends procps vim systemd openssl
 
 # establish where nginx should look for files
-ENV DOMAIN_NAME {domain_name}
+#ENV DOMAIN_NAME {domain_name}
 
 # Copy nginx config template into a temp directory so it can be customized for the app
-COPY ./nginx/nginx.conf /tmp/docker.nginx
+#COPY ./nginx/nginx.conf /tmp/docker.nginx
 
 # substitue variable references in the nginx config template with those from the environment
-RUN envsubst '$DOMAIN_NAME' < /tmp/docker.nginx > /etc/nginx/conf.d/default.conf 
+#RUN envsubst '$DOMAIN_NAME' < /tmp/docker.nginx > /etc/nginx/conf.d/default.conf 
 
+COPY ./nginx/nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
 EXPOSE 443
 

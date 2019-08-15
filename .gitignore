@@ -1,0 +1,7 @@
+data/website/*
+!data/website/.keep
+data/nginx/nginx_logs/*
+!data/nginx/nginx_logs/.keep
+nginx/nginx.conf
+data/nginx/nginx.conf
+.env

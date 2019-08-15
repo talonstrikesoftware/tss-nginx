@@ -58,7 +58,7 @@ http {
     server {
        listen 80;
 
-       server_name $DOMAIN_NAME # www.domain.com domain.com
+       server_name DOMAIN_NAME # www.domain.com domain.com
 
        # redirects both www and non-www to https
        return 301 https://$host$request_uri;
