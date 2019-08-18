@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -e
 
 echo $OSTYPE
@@ -6,7 +6,7 @@ echo $OSTYPE
 cp ./nginx/nginx.conf.template ./nginx/nginx.conf
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-   sed -i '' -e "s/DOMAIN_NAME/$1/g"  $PWD/nginx/nginx.conf
+   sed -i -e "s/DOMAIN_NAME/$1/g"  $PWD/nginx/nginx.conf
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     # have to do it this way because of mac OSX, will need to adjust for different OS's
     sed -i '' -e "s/DOMAIN_NAME/$1/g"  $PWD/nginx/nginx.conf
@@ -15,7 +15,3 @@ else
 fi
 
 cp ./nginx/nginx.conf ./data/nginx
-# mv $1/nginx/nginx.conf $1/data/nginx
-#mv $1/env.template $1/.env
-#rm $1/README.md
-#rm $1/project-setup.sh
